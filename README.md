@@ -1,7 +1,7 @@
 # 🐾 PetHealth CLI
 
 **Versão:** 1.0.0  
-**Autor:** Thiago (Seu Nome Completo)
+**Autor:** Thiago de Pádua Bergamaschi
 
 ## 📖 Sobre o Projeto
 O **PetHealth CLI** é uma solução simples e eficiente para resolver uma dor real de muitos tutores de animais: o esquecimento das datas de vacinação e vermifugação. O atraso nessas doses pode comprometer a saúde dos pets e da família.
