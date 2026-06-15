@@ -25,7 +25,7 @@ def list_pets():
 
 
 def fetch_clinic_by_cep(cep):
-    """Consome a API pública ViaCEP para buscar a região do tutor"""
+    """Consome a API pública ViaCEP para buscar a região do tutor."""
     cep_limpo = cep.replace("-", "").replace(" ", "")
     url = f"https://viacep.com.br/ws/{cep_limpo}/json/"
 
@@ -47,6 +47,7 @@ def fetch_clinic_by_cep(cep):
 
 def main():
     print("\n--- 🐾 PetHealth CLI - Carteirinha de Vacinação ---")
+
     while True:
         print("\n1. Adicionar Vacina/Vermífugo")
         print("2. Listar Histórico")
@@ -59,6 +60,7 @@ def main():
             nome = input("Nome do Pet: ")
             vacina = input("Nome da Vacina/Vermífugo: ")
             data = input("Data da próxima dose (DD/MM/AAAA): ")
+
             if add_pet(nome, vacina, data):
                 print("✅ Registro adicionado com sucesso!")
             else:
@@ -66,14 +68,16 @@ def main():
 
         elif opcao == "2":
             pets = list_pets()
+
             if not pets:
                 print("\nNenhum registro encontrado.")
-            for p in pets:
-                print(
-                    f"🐶 {p['pet_name']} | "
-                    f"Vacina: {p['vaccine_name']} | "
-                    f"Próxima Dose: {p['next_dose_date']}"
-                )
+            else:
+                for p in pets:
+                    print(
+                        f"🐶 {p['pet_name']} | "
+                        f"Vacina: {p['vaccine_name']} | "
+                        f"Próxima Dose: {p['next_dose_date']}"
+                    )
 
         elif opcao == "3":
             cep_input = input("Digite o seu CEP (apenas números): ")
@@ -83,13 +87,23 @@ def main():
             if regiao:
                 print(
                     f"\n📍 Região localizada: "
-                    f"{regiao['bairro']} - {regiao['cidade']}/{regiao['estado']}\n"
+                    f"{regiao['bairro']} - "
+                    f"{regiao['cidade']}/{regiao['estado']}\n"
                 )
                 print("🏥 Clínicas Parceiras Próximas Encontradas:")
-                print(f"1. Vet {regiao['cidade']} Centro - Atendimento 24h")
-                print(f"2. Clínica Amigo dos Pets ({regiao['bairro']})")
+                print(
+                    f"1. Vet {regiao['cidade']} "
+                    "Centro - Atendimento 24h"
+                )
+                print(
+                    f"2. Clínica Amigo dos Pets "
+                    f"({regiao['bairro']})"
+                )
             else:
-                print("❌ CEP não encontrado ou erro de conexão com a API.")
+                print(
+                    "❌ CEP não encontrado "
+                    "ou erro de conexão com a API."
+                )
 
         elif opcao == "4":
             print("Saindo... Cuide bem do seu pet! 🐾")
